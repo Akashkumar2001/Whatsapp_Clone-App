@@ -95,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.logout:
                 auth.signOut();
-
+                Intent intent1= new Intent(MainActivity.this,SignInActivity.class);
+                startActivity(intent1);
+                finish();
                 break;
             case R.id.group:
                 Toast.makeText(MainActivity.this, "Groups Clicked", Toast.LENGTH_SHORT).show();
@@ -103,22 +105,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent1= new Intent(MainActivity.this,SignInActivity.class);
-                        startActivity(intent1);
-                        finish();
-                    }
 
-
-                });
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.topmenu,menu);
         return super.onCreateOptionsMenu(menu);
+
     }
 }

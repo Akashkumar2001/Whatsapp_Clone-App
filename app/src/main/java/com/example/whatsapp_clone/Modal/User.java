@@ -1,10 +1,15 @@
-package com.example.whatsapp_clone;
+package com.example.whatsapp_clone.Modal;
 
 public class User {
     private String uid,name,phoneNumber,profileImage,mail,password,lastMessage,status;
 
     public User(){
 
+    }
+
+    public User(String name,String profileImage) {
+        this.name=name;
+        this.profileImage = profileImage;
     }
 
     public User(String uid, String name, String phoneNumber, String profileImage) {

@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone;
+package com.example.whatsapp_clone.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.whatsapp_clone.Modal.User;
 import com.example.whatsapp_clone.databinding.ActivitySignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

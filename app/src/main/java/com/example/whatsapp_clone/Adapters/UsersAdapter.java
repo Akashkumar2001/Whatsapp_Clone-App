@@ -1,6 +1,5 @@
-package com.example.whatsapp_clone;
+package com.example.whatsapp_clone.Adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.whatsapp_clone.Activity.ChatActivity;
+import com.example.whatsapp_clone.Modal.User;
+import com.example.whatsapp_clone.R;
 import com.example.whatsapp_clone.databinding.RowConversationBinding;
 
 import java.util.ArrayList;
@@ -44,10 +46,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context,ChatActivity.class);
+                Intent intent=new Intent(context, ChatActivity.class);
                 intent.putExtra("name",user.getName());
                 intent.putExtra("uid",user.getUid());
                 intent.putExtra("profile",user.getProfileImage());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
             }

@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone;
+package com.example.whatsapp_clone.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.whatsapp_clone.R;
+import com.example.whatsapp_clone.Modal.User;
 import com.example.whatsapp_clone.databinding.ActivitySignInBinding;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -59,6 +61,7 @@ public class SignInActivity extends AppCompatActivity {
         if(auth.getCurrentUser()!=null){
             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
             startActivity(intent);
+            finishAffinity();
         }
 
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +78,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                         Intent intent=new Intent(SignInActivity.this,MainActivity.class);
                                         startActivity(intent);
+                                        finishAffinity();
                                     }else{
                                         Toast.makeText(SignInActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                     }
@@ -155,6 +159,7 @@ public class SignInActivity extends AppCompatActivity {
 
                             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
                             startActivity(intent);
+                            finishAffinity();
 
                             Toast.makeText(SignInActivity.this, "Signed in with Google", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();

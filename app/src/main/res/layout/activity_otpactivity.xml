@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="@color/white"
-    tools:context=".PhoneNumberActivity">
+    tools:context=".Activity.PhoneNumberActivity">
 
     <ImageView
         android:id="@+id/imageView"

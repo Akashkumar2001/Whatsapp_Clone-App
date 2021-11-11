@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -37,7 +38,6 @@ public class ChatActivity extends AppCompatActivity {
 
     String senderRoom, receiverRoom;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         messages=new ArrayList<>();
-        adapter=new MessagesAdapter(this,messages);
-        binding.recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView2.setAdapter(adapter);
+
 
         getSupportActionBar().hide();
         auth=FirebaseAuth.getInstance();
@@ -61,6 +59,10 @@ public class ChatActivity extends AppCompatActivity {
         senderRoom=senderUid+receiverUid;
         receiverRoom=receiverUid+senderUid;
 
+        adapter=new MessagesAdapter(this,messages,senderRoom,receiverRoom);
+        binding.recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView2.setAdapter(adapter);
+
         database.getReference().child("chats")
                 .child(senderRoom)
                 .child("messages")
@@ -70,6 +72,7 @@ public class ChatActivity extends AppCompatActivity {
                         messages.clear();
                         for(DataSnapshot snapshot1: snapshot.getChildren()){
                             Message message=snapshot1.getValue(Message.class);
+                            message.setMessageId(snapshot1.getKey());
                             messages.add(message);
                         }
                         adapter.notifyDataSetChanged();
@@ -88,23 +91,29 @@ public class ChatActivity extends AppCompatActivity {
 
                                                    Message message = new Message(messageTxt, senderUid, date.getTime());
                                                    binding.messageBox.setText("");
+
+                                                   String randomKey=database.getReference().push().getKey();
+
+
+
                                                    database.getReference().child("chats")
                                                            .child(senderRoom)
                                                            .child("messages")
-                                                           .push()
+                                                           .child(randomKey)
                                                            .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                        @Override
                                                        public void onSuccess(Void unused) {
                                                            database.getReference().child("chats")
                                                                    .child(receiverRoom)
                                                                    .child("messages")
-                                                                   .push()
+                                                                   .child(randomKey)
                                                                    .setValue(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                @Override
                                                                public void onSuccess(Void unused) {
 
                                                                }
                                                            });
+
                                                        }
                                                    });
                                                }

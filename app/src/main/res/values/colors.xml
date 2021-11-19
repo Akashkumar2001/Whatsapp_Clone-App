@@ -26,5 +26,7 @@
     <color name="grayBackground">#BCBCBC</color>
     <color name="chatbackground">#AAAAAA</color>
     <color name="sender">#9CFF91</color>
+    <color name="blue">#415AFF</color>
+    <color name="darkblue">#01706C</color>
 
 </resources>

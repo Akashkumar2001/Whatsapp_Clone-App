@@ -59,7 +59,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
         if(auth.getCurrentUser()!=null){
-            Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+            Intent intent=new Intent(SignInActivity.this,HomeActivity.class);
             startActivity(intent);
             finishAffinity();
         }
@@ -76,7 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                                     dialog.dismiss();
                                     if(task.isSuccessful()){
 
-                                        Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+                                        Intent intent=new Intent(SignInActivity.this,HomeActivity.class);
                                         startActivity(intent);
                                         finishAffinity();
                                     }else{
@@ -157,7 +157,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
 
-                            Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+                            Intent intent=new Intent(SignInActivity.this,HomeActivity.class);
                             startActivity(intent);
                             finishAffinity();
 
